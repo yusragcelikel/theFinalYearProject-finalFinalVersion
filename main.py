@@ -1,7 +1,6 @@
 from recognition import FaceRecognition
 import cv2
 import os.path
-import numpy as np
 
 print("Press 1 for the SAVE process.")
 print("Press 2 for the RECOGNIZE process.")
@@ -26,14 +25,13 @@ if process_choice == 1:
 
             while True:
                 success, img = cap.read()
-
+                img = cv2.normalize(img, None, 0, 1, cv2.NORM_MINMAX, dtype=cv2.CV_32F)
 
                 if img_counter == 1:
                     exit()  # 1 tane image capture edildiğinde programı kapatır.
 
                 else:
                     cv2.imshow("Image", img)  # kamera görüntüsü image adlı pencerede gosterilir
-                    img = cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX)
                     k = cv2.waitKey(1)
 
                     if k % 256 == 27:
