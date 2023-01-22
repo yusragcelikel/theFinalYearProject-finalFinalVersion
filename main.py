@@ -1,3 +1,5 @@
+import numpy as np
+
 from recognition import FaceRecognition
 import cv2
 import os.path
@@ -25,7 +27,8 @@ if process_choice == 1:
 
             while True:
                 success, img = cap.read()
-                img = cv2.normalize(img, None, 0, 1, cv2.NORM_MINMAX, dtype=cv2.CV_32F)
+                img_normalized= cv2.normalize(img, None, 0, 255, cv2.NORM_MINMAX)
+                img = img_normalized
 
                 if img_counter == 1:
                     exit()  # 1 tane image capture edildiğinde programı kapatır.
